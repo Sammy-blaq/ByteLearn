@@ -92,6 +92,13 @@ aside {
   grid-column: 1 / -1;
 }
 
+.career-icons {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 10px;
+}
+
+
 .career-heading {
   font-weight: bold;
 }

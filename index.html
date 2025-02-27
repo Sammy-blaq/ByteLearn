@@ -16,32 +16,31 @@
             <div class="grid-2col">
                 <article class="form sign-in">
                     <div class="sign-in-container">
-
                         <h2>Sign in</h2>
                         
-                        <form action="" method="post">
+                        <form id="loginForm" action="" method="post">
                             <label for="email" class="label">Email</label>
                             <br>
-                            <input type="email" name="email" id="" placeholder="name@email.com" class="input login-input">
+                            <input type="email" name="email" id="email" placeholder="name@email.com" class="input login-input" required>
+                            <div><p id="emailError" class="error-message"></p></div> <!-- Error message for email -->
                             <br>
                             <label for="password" class="label">Password</label>
                             <br>
-                            <input type="password" name="password" id="" placeholder="Enter your password" class="input login-input">
+                            <input type="password" name="password" id="password" placeholder="Enter your password" class="input login-input" required>
+                            <div><p id="passwordError" class="error-message"></p></div> <!-- Error message for password -->
                             <br>
                             <div class="remember-pass">
                                 <div>
-                                    <input type="checkbox" name="" id="" class="checkbox">Remenber Me
+                                    <input type="checkbox" name="remember" id="remember" class="checkbox"> Remember Me
                                 </div>
                                 <a href="#" class="forgot-pass">Forgot password?</a>
                             </div>
                             <br>
                             <div class="btn-login-container">
-                                <!-- Suppose to be a button for function -->
-                                <a href="home.html" class="btn-login">Login</a>
+                                <button type="submit" class="btn-login" id="loginButton" disabled>Login</button> <!-- Replaced <a> with <button> -->
                             </div>
-                        </div>
-                    </form>
-                    
+                        </form>
+                    </div>
                 </article>
                 <section class="welcome-flex">
                     <h2>Welcome back</h2>
@@ -51,8 +50,83 @@
         </div>
         <hr>
         <footer class="google">
-            This is protected by reCAPTCHA  Enterprise and the Google <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply
+            This is protected by reCAPTCHA Enterprise and the Google <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply
         </footer>
     </main>
+
+    <script>
+        const validateEmail = (email) => {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        };
+
+        const validatePassword = (password) => {
+            const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)[A-Za-z\d]{6,}$/;
+            return passwordRegex.test(password);
+        };
+
+        const toggleError = (inputElement, errorElement, condition, message) => {
+            if (condition) {
+                errorElement.textContent = message;
+                errorElement.style.display = "block";
+                inputElement.classList.add("error");
+            } else {
+                errorElement.style.display = "none";
+                inputElement.classList.remove("error");
+            }
+        };
+
+        const validate = (event) => {
+            event.preventDefault();
+
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const loginButton = document.getElementById('loginButton');
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            let isFormValid = true;
+
+            if (!email) {
+                toggleError(emailInput, document.getElementById('emailError'), true, "Email is required");
+                isFormValid = false;
+            } else if (!validateEmail(email)) {
+                toggleError(emailInput, document.getElementById('emailError'), true, "Invalid email format");
+                isFormValid = false;
+            } else {
+                toggleError(emailInput, document.getElementById('emailError'), false);
+            }
+
+            if (!password) {
+                toggleError(passwordInput, document.getElementById('passwordError'), true, "Password is required");
+                isFormValid = false;
+            } else if (!validatePassword(password)) {
+                toggleError(passwordInput, document.getElementById('passwordError'), true, "Password must be at least 6 characters, include a number and a letter");
+                isFormValid = false;
+            } else {
+                toggleError(passwordInput, document.getElementById('passwordError'), false);
+            }
+
+            loginButton.disabled = !isFormValid;
+
+            if (isFormValid) {
+                alert(`Login successful for ${email}`);
+                window.location.href = "home.html"; 
+            }
+        };
+
+        document.getElementById('loginForm').addEventListener('submit', validate);
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById('loginButton').disabled = true;
+        });
+
+        document.getElementById('email').addEventListener('input', () => {
+            document.getElementById('emailError').style.display = 'none';
+        });
+        document.getElementById('password').addEventListener('input', () => {
+            document.getElementById('passwordError').style.display = 'none';
+        });
+    </script>
 </body>
 </html>

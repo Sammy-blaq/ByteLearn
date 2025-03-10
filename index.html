@@ -22,22 +22,24 @@
                         <form action="" method="post">
                             <label for="email" class="label">Email</label>
                             <br>
-                            <input type="email" name="email" id="" placeholder="name@email.com" class="input login-input">
+                            <input type="email" name="email" id="email" placeholder="name@email.com" class="input login-input">
+                            <div class="emailError"></div>
                             <br>
                             <label for="password" class="label">Password</label>
                             <br>
-                            <input type="password" name="password" id="" placeholder="Enter your password" class="input login-input">
+                            <input type="password" name="password" id="password" placeholder="Enter your password" class="input login-input">
+                            <div class="passwordError"></div>
+
                             <br>
                             <div class="remember-pass">
-                                <div>
-                                    <input type="checkbox" name="" id="" class="checkbox">Remenber Me
-                                </div>
-                                <a href="#" class="forgot-pass">Forgot password?</a>
+                                    <input type="checkbox" name="" id="" class="checkbox">Remember Me
                             </div>
+                                <div id="forgotPass">
+                                    <a href="#" class="forgot-pass">Forgot password?</a>
+                                </div>
                             <br>
                             <div class="btn-login-container">
-                                <!-- Suppose to be a button for function -->
-                                <a href="home.html" class="btn-login">Login</a>
+                                <a href="#" class="btn-login">Login</a>
                             </div>
                         </div>
                     </form>
@@ -54,5 +56,6 @@
             This is protected by reCAPTCHA  Enterprise and the Google <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply
         </footer>
     </main>
+    <script src="login.js"></script>
 </body>
 </html>

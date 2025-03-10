@@ -788,3 +788,31 @@ pq-search {
 .pq-input {
   margin-bottom: 30px;
 }
+/* Styling for the error messages */
+.emailError, .passwordError {
+  color: #e74c3c; 
+  font-size: 0.75em; 
+  margin-top: 1px;
+  margin-right: 2px;
+  font-weight: 500; 
+  display: none; 
+  transition: opacity 0.3s ease; 
+}
+
+/* Show error messages when active */
+.emailError.show, .passwordError.show {
+  display: block;
+  opacity: 1;
+}
+
+/* Error input field styling */
+input.invalid {
+  border: 2px solid #e74c3c; 
+  background-color: #fdd; 
+}
+
+/* Focus styling for invalid input */
+input.invalid:focus {
+  border: 2px solid #e73a1c; 
+  background-color: #f8f0f0; 
+}

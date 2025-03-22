@@ -213,6 +213,14 @@
   background-color: #bbb;
 }
 
+.sign-up-input:focus,
+.btn-sign-up:focus,
+.sign-up-link:focus {
+  outline: none;
+
+  box-shadow: 0 0 0 0.8rem rgba(255, 255, 255, 0.5);
+}
+
 /* FOOTER */
 .google {
   text-align: center;

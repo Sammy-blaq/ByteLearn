@@ -517,3 +517,10 @@
     width: 100%;
   }
 }
+
+@media (max-width: 21em) {
+  html {
+    /* 4px / 16px = 0.25 = 25% */
+    font-size: 25%;
+  }
+}
